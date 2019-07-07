@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
+
+<c74object name="th.pitchshift~">
+
+	<digest>
+		A time domain pitch shifter
+	</digest>
+
+	<description>
+		Shifts the pitch of the incoming signal. Pitch shifting can be set as midi-note (float for detune) in first inlet. Note 48 = no shift. Outputs the pitch shifted signal, wet-amount can be changed to mix the original signal with the pitchshifted sound.
+	</description>
+
+	<!--METADATA-->
+	<metadatalist>
+		<metadata name="author">Timo Hoogland</metadata>
+		<metadata name="tag">thModules</metadata>
+		<metadata name="tag">msp</metadata>
+		<metadata name="tag">audio</metadata>
+		<metadata name="tag">pitch</metadata>
+		<metadata name="tag">fx</metadata>
+	</metadatalist>
+
+	<!--INLETS-->
+	<inletlist>
+		<inlet id="0" type="signal">
+			<digest>the audio signal to be pitch shifted</digest>
+		</inlet>
+	</inletlist>
+
+	<!--OUTLETS-->
+	<outletlist>
+		<outlet id="0" type="signal">
+			<digest>the pitch shifted signal</digest>
+		</outlet>
+	</outletlist>
+
+	<!--ARGUMENTS-->
+	<!--
+	<objarglist>
+		<objarg name="name" optional="1" type="float">
+			<digest>digest</digest>
+		</objarg>
+	</objarglist>
+	-->
+
+	<!--MESSAGES-->
+	<methodlist>
+		<method name="float">
+			<arglist>
+				<arg name="pitch" optional="0" type="float" />
+			</arglist>
+			<digest>
+				Pitch shift amount in midi-pitch (float for midicents).
+			</digest>
+			<description>
+				The amount of shift in midi note values to shift the signal. 48 = no shifting. +12 = one octave up, -12 = one octave down. Shift can be in floating point for slight tuning.
+			</description>
+		</method>
+	</methodlist>
+
+	<!--ATTRIBUTES-->
+	<attributelist>
+		<attribute name='wet' get='0' set='1' type='message' size='1' >
+			<digest>wet amount</digest>
+			<description>
+				Change the amount of original versus shifted signal. Where 0 is original and 1 is pitchshifted. (default = 1)
+			</description>
+		</attribute>
+
+		<attribute name='shiftratio' get='0' set='1' type='float' size='1' >
+			<digest>shift ratio</digest>
+			<description>
+				An alternative for the midi shift. The ratio for pitchshifting. 1 = no shifting, 2 = shift up one octave, 0.5 = shift down one octave. (default = 1)
+			</description>
+		</attribute>
+
+		<attribute name='window' get='0' set='1' type='int' size='1' >
+			<digest>the window size</digest>
+			<description>
+				Change the window size in ms (5 - 2000). A lower value gives less delay but more artifacts. Higher value is more delay, but smoother sounding. A big window size works better for down-tuning. (default = 100)
+			</description>
+		</attribute>
+
+		<attribute name='pitch' get='0' set='1' type='int' size='1' >
+			<digest>
+				Pitch shift amount in midi-pitch (float for midicents).
+			</digest>
+			<description>
+				Same as float for inlet. The amount of shift in midi note values to shift the signal. 48 = no shifting. +12 = one octave up, -12 = one octave down. Shift can be in floating point for slight tuning.
+			</description>
+		</attribute>
+	</attributelist>
+
+	<!--SEEALSO-->
+	<seealsolist>
+		<seealso name="delay~"/>
+		<seealso name="tapin~"/>
+		<seealso name="tapout~"/>
+		<seealso name="phasor~"/>
+		<seealso name="sig~"/>
+		<seealso name="buffer~"/>
+		<seealso name="groove~"/>
+	</seealsolist>
+
+</c74object>
